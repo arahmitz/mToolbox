@@ -1,4 +1,5 @@
 import maya.cmds as cmds
+from mtoolbox.utils.selection import get_selection
 
 def select_hierarchy():
     """
@@ -6,8 +7,8 @@ def select_hierarchy():
     Using MEL: select -hierarchy
     """
 
-    if not cmds.ls(selection=True):
-        cmds.warning("No objects selected. Aborting.")
+    selection = get_selection("Select Hierarchy")
+    if not selection:
         return
     
     cmds.select(hierarchy=True)
