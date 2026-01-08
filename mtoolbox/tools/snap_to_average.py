@@ -10,15 +10,12 @@ def snap_to_average():
     - All others are the points for the average
     """
     selection = get_selection("Snap to Average")
-    constraints = []
 
     if selection:
         if len(selection) < 2:
             cmds.warning("Snap tool needs at least 2 selected objects. Aborting Snap to Average.")
             return
         else:
-            for driver in selection[:-1]:
-                # selection[-1] <=> driven
-                constraints.append(cmds.parentConstraint(driver, selection[-1], mo=False)) 
-            for constraint in constraints:
-                cmds.delete(constraint)
+                # selection[-1] is the driven object
+                constraint = (cmds.parentConstraint(selection[0], selection[1:], mo=False))
+                cmds.delete(constraint) 
