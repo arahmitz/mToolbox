@@ -17,7 +17,6 @@ Macros for used commands such as:
 - Create Joint Chain (customizable)
 
 Next plans:
-- Create a register shelf script
 - Create UI window with all the tools
 
 ## Installaton: 
