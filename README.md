@@ -11,9 +11,11 @@ Macros for used commands such as:
 - Freeze Transforms
 - Select Hierarchy
 - Delete History
+- Smarter Create Locator (at selection/at world origin)
+- Snap To Average 
+- Snap To Parent (for multiple objects)
 
 Next plans:
-- Mirror Joints and Mirror Controllers
 - Create Joint Chain (customizable)
 
 ## Installaton: 
