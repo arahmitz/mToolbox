@@ -20,6 +20,6 @@ Next plans:
 - Create UI window with all the tools
 
 ## Installaton: 
-1. Clone the repo into a folder
+1. Clone repo and extract it
 2. Copy `mtoolbox` into your `maya/####/scripts` folder
 3. Drag and drop `install_drag_n_drop.py` into your viewport
