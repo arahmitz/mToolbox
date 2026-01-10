@@ -22,5 +22,4 @@ Next plans:
 ## Installaton: 
 1. Clone the repo into a folder
 2. Copy `mtoolbox` into your `maya/####/scripts` folder
-3. Open `mtoolbox` and copy `icons` folder into `maya/####/prefs/icons/mtoolbox` folder (you will need to create it)
-4. Going back to `maya/####/scripts/mtoolbox` drag & drop install.py into your viewport
+3. Drag and drop `install_drag_n_drop.py` into your viewport
