@@ -1,14 +1,14 @@
 import maya.cmds as cmds
 
-def create_joints():
+def create_joints(joint_count, base_name, add_affix):
     """
     Creates a chain with zero-ed JO of user selected length and name. Selects the first joint at the end.
     """
     spacing = 5
-    joint_count = 3
-    base_name = 'joint'
-    add_affix = True
-    root_joint = []
+    root_joint = None
+
+    if base_name == None:
+        base_name = 'joint'
 
     # Create parametered joint chain
     for joint in range(joint_count):
