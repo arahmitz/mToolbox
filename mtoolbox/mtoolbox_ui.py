@@ -1,10 +1,15 @@
-import PySide2
+import PySide2, shiboken2, sys, os
 from PySide2 import QtWidgets, QtCore, QtGui
-import shiboken2
 import maya.OpenMayaUI as omui
-import sys
-import os
 import maya.cmds as cmds
+import mtoolbox.tools.create_joints as create_joints
+import mtoolbox.tools.snap_to_parent as snap_to_parent
+import mtoolbox.tools.snap_to_average as snap_to_average
+import mtoolbox.tools.select_hierarchy as select_hierarchy
+import mtoolbox.tools.delete_history as delete_history
+import mtoolbox.tools.freeze_transforms as freeze_transforms
+import mtoolbox.tools.toggle_lra as toggle_lra
+import mtoolbox.tools.create_locator as create_locator
 
 toolbox_path = os.path.join(cmds.internalVar(userScriptDir=True), 'mtoolbox')
 if toolbox_path not in sys.path:
@@ -27,7 +32,7 @@ class MToolboxUI(QtWidgets.QDialog):
     def __init__(self, parent=None):
         super(MToolboxUI, self).__init__(parent)
         self.setWindowTitle("mToolbox v.1.0")
-
+        
         # -------------
         # Window Layout
         # -------------
@@ -63,6 +68,7 @@ class MToolboxUI(QtWidgets.QDialog):
         # Button Row
         self.create_joints_button = QtWidgets.QPushButton("Create Chain")
         self.create_joints_button.clicked.connect(self.on_create_chain)
+        self.create_joints_button.setToolTip(create_joints.create_joints.__doc__)
 
         # --------------------------------------
         # Snap to Parent & Snap to Average Tools
@@ -70,9 +76,11 @@ class MToolboxUI(QtWidgets.QDialog):
 
         self.stp_button = QtWidgets.QPushButton("Snap To Parent")
         self.stp_button.clicked.connect(self.on_snap_to_parent)
+        self.stp_button.setToolTip(snap_to_parent.snap_to_parent.__doc__)
 
         self.sta_button = QtWidgets.QPushButton("Snap To Average")
         self.sta_button.clicked.connect(self.on_snap_to_average)
+        self.sta_button.setToolTip(snap_to_average.snap_to_average.__doc__)
         
         # ---------------------
         # Joint Operations Grid
@@ -80,15 +88,20 @@ class MToolboxUI(QtWidgets.QDialog):
 
         self.sel_hie_button = QtWidgets.QPushButton("Select Hierarchy")
         self.sel_hie_button.clicked.connect(self.on_select_hierarchy)
+        self.sel_hie_button.setToolTip(select_hierarchy.select_hierarchy.__doc__)
+        
      
         self.del_his_button = QtWidgets.QPushButton("Delete History")
         self.del_his_button.clicked.connect(self.on_delete_history)
+        self.del_his_button.setToolTip(delete_history.delete_history.__doc__)
 
         self.fre_trf_button = QtWidgets.QPushButton("Freeze Transforms")
         self.fre_trf_button.clicked.connect(self.on_freeze_transforms)
+        self.fre_trf_button.setToolTip(freeze_transforms.freeze_transforms.__doc__)
 
         self.show_lra_button = QtWidgets.QPushButton("Toggle LRA")
         self.show_lra_button.clicked.connect(self.on_toggle_lra)
+        self.show_lra_button.setToolTip(toggle_lra.toggle_lra.__doc__)
 
         # --------------
         # Create Locator
@@ -96,6 +109,7 @@ class MToolboxUI(QtWidgets.QDialog):
 
         self.crt_loc_button = QtWidgets.QPushButton("Create Locator at Selection")
         self.crt_loc_button.clicked.connect(self.on_create_locator)
+        self.crt_loc_button.setToolTip(create_locator.create_locator.__doc__)
        
         # -------------
         # Window Layout
@@ -208,14 +222,14 @@ class MToolboxUI(QtWidgets.QDialog):
 # -------
 def show_ui():
     global win
+
     maya_parent = get_maya_main_window()
 
     try:
-        if win is None:
-            win.close()
-            win.deleteLater()
+        win.close()
+        win.deleteLater()
     except NameError:
-        win = MToolboxUI(parent=maya_parent)
+        pass
 
     win = MToolboxUI(parent=maya_parent)
     win.show()
