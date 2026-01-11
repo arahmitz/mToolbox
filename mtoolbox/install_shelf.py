@@ -57,7 +57,7 @@ def onMayaDroppedPythonFile(*args):
         },
         {
             "annotation": "Create Joints",
-            "command": "from mtoolbox.tools.create_joints import create_joints; create_joints()",
+            "command": "from mtoolbox.tools.create_joints import create_joints; create_joints(3, 'joint', True)",
             "image": "mtoolbox/create_joints.png"
         },
     ]
