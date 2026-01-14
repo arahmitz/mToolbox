@@ -14,13 +14,16 @@ mToolbox has two modes:
 
 Notable functions:
 - Create Joint Chain (customizable via UI or by editing the button)
+- Smarter Create Locator (at selection/at world origin)
 - Snap To Average 
+- Point To Average
 - Snap To Parent (for multiple objects)
-- Toggle LRAs
 - Freeze Transforms
 - Select Hierarchy
 - Delete History
-- Smarter Create Locator (at selection/at world origin)
+- Toggle LRAs
+- Joint ZSO (zero Scale Orientation
+
 
 ## Installaton: 
 1. Clone or download this repository
