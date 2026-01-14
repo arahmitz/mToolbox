@@ -21,15 +21,30 @@ def onMayaDroppedPythonFile(*args):
     # List of buttons to add
     buttons_to_add = [
         {
-            "annotation": "Toggle LRA",
-            "command": "from mtoolbox.tools.toggle_lra import toggle_lra; toggle_lra()",
-            "image": "mtoolbox/toggle_lra.png"
+            "annotation": "Create Joints",
+            "command": "from mtoolbox.tools.create_joints import create_joints; create_joints(3, 'joint', True)",
+            "image": "mtoolbox/create_joints.png"
         },
         {
-            "annotation": "Delete History",
-            "command": "from mtoolbox.tools.delete_history import delete_history; delete_history()",
-            "image": "mtoolbox/delete_history.png"
-        }, 
+            "annotation": "Create Locator",
+            "command": "from mtoolbox.tools.create_locator import create_locator; create_locator()",
+            "image": "mtoolbox/create_locator.png"
+        },
+        {
+            "annotation": "Snap To Average",
+            "command": "from mtoolbox.tools.snap_to_average import snap_to_average; snap_to_average()",
+            "image": "mtoolbox/snap_to_average.png"
+        },
+        {
+            "annotation": "Point To Average",
+            "command": "from mtoolbox.tools.point_to_average import point_to_average; point_to_average()",
+            "image": "mtoolbox/point_to_average.png"
+        },
+        {
+            "annotation": "Snap To Parent",
+            "command": "from mtoolbox.tools.snap_to_parent import snap_to_parent; snap_to_parent()",
+            "image": "mtoolbox/snap_to_parent.png"
+        },
         {
             "annotation": "Freeze Transforms",
             "command": "from mtoolbox.tools.freeze_transforms import freeze_transforms; freeze_transforms()",
@@ -40,26 +55,22 @@ def onMayaDroppedPythonFile(*args):
             "command": "from mtoolbox.tools.select_hierarchy import select_hierarchy; select_hierarchy()",
             "image": "mtoolbox/select_hierarchy.png"
         },
+           {
+            "annotation": "Delete History",
+            "command": "from mtoolbox.tools.delete_history import delete_history; delete_history()",
+            "image": "mtoolbox/delete_history.png"
+        }, 
         {
-            "annotation": "Create Locator",
-            "command": "from mtoolbox.tools.create_locator import create_locator; create_locator()",
-            "image": "mtoolbox/create_locator.png"
+            "annotation": "Toggle LRA",
+            "command": "from mtoolbox.tools.toggle_lra import toggle_lra; toggle_lra()",
+            "image": "mtoolbox/toggle_lra.png"
         },
         {
-            "annotation": "Snap To Parent",
-            "command": "from mtoolbox.tools.snap_to_parent import snap_to_parent; snap_to_parent()",
-            "image": "mtoolbox/snap_to_parent.png"
+            "annotation": "Joint ZSO",
+            "command": "from mtoolbox.tools.joint_zso import joint_zso; joint_zso()",
+            "image": "mtoolbox/joint_zso.png"
         },
-        {
-            "annotation": "Snap To Average",
-            "command": "from mtoolbox.tools.snap_to_average import snap_to_average; snap_to_average()",
-            "image": "mtoolbox/snap_to_average.png"
-        },
-        {
-            "annotation": "Create Joints",
-            "command": "from mtoolbox.tools.create_joints import create_joints; create_joints(3, 'joint', True)",
-            "image": "mtoolbox/create_joints.png"
-        },
+
     ]
 
 
