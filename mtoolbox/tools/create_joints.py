@@ -7,7 +7,7 @@ def create_joints(joint_count, base_name, add_affix):
     spacing = 5
     root_joint = None
 
-    if base_name == None:
+    if base_name == None or base_name == "":
         base_name = 'joint'
 
     # Create parametered joint chain
