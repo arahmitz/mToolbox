@@ -13,16 +13,17 @@ mToolbox has two modes:
 - **Shelf** with separate buttons
 
 Notable functions:
-- Create Joint Chain (customizable via UI or by editing the button)
-- Smarter Create Locator (at selection/at world origin)
-- Snap To Average 
-- Point To Average
-- Snap To Parent (for multiple objects)
-- Freeze Transforms
-- Select Hierarchy
-- Delete History
-- Toggle LRAs
-- Joint ZSO (zero Scale Orientation
+- Create Joint - creates a join chain in +X, editable number of joints, spacing and naming (via UI or command at the end)
+- Smarter Create Locator (at selection/at world origin) - creates a locator at your current selection
+- Snap To Average - snaps the last selected object to the average of rest of the selection (works both on translation and rotation)
+- Point To Average - snaps the last selected object to the average of rest of the selection (works ONLY on translation)
+- Snap To Parent (for multiple objects) - snaps all the objects to the first selected (works both on translation and rotation)
+- Freeze Transforms - freezes transformation via Freeze Transform command
+- Select Hierarchy - selects whole hierarchy of the selected object
+- Delete History - deletes history via Delete History -> By Type
+- Toggle LRAs - toggles Local Rotation Axis on/off
+- Joint ZSO (zero Scale Orientation) - matches rotation axis to translation axis via `joint -e -zso` command
+- Make ROM - creates a keyframe each 10 frame starting from 0 up to your current endTime, intended for Range of Movement animation
 
 
 ## Installaton: 
