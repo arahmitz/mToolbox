@@ -204,59 +204,57 @@ class MToolboxUI(QtWidgets.QDialog):
         base_name = self.create_joints_input_lineedit.text()
         add_affix = self.create_joints_input_checkbox.isChecked()
 
-        import importlib
-        import tools.create_joints as create_joints
-        create_joints.create_joints(joint_count, base_name, add_affix)
+        tools.create_joints(joint_count, base_name, add_affix)
     
     def on_snap_to_parent(self):
         import importlib
         import tools.snap_to_parent as snap_to_parent
-        snap_to_parent.snap_to_parent()
+        tools.snap_to_parent()
 
     def on_snap_to_average(self):
         import importlib
         import tools.snap_to_average as snap_to_average
-        snap_to_average.snap_to_average()
+        tools.snap_to_average()
 
     def on_select_hierarchy(self):
         import importlib
         import tools.select_hierarchy as select_hierarchy
-        select_hierarchy.select_hierarchy()
+        tools.select_hierarchy()
 
     def on_delete_history(self):
         import importlib
         import tools.delete_history as delete_history
-        delete_history.delete_history()
+        tools.delete_history()
 
     def on_freeze_transforms(self):
         import importlib
         import tools.freeze_transforms as freeze_transforms
-        freeze_transforms.freeze_transforms()
+        tools.freeze_transforms()
     
     def on_toggle_lra(self):
         import importlib
         import tools.toggle_lra as toggle_lra
-        toggle_lra.toggle_lra()
+        tools.toggle_lra()
     
     def on_create_locator(self):
         import importlib
         import tools.create_locator as create_locator
-        create_locator.create_locator()
+        tools.create_locator()
     
     def on_joint_zso(self):
         import importlib
         import tools.joint_zso as joint_zso
-        joint_zso.joint_zso()
+        tools.joint_zso()
 
     def on_point_to_average(self):
         import importlib
         import tools.point_to_average as point_to_average
-        point_to_average.point_to_average()
+        tools.point_to_average()
 
     def on_make_rom(self):
         import importlib
         import tools.make_rom as make_rom
-        make_rom.make_rom()
+        tools.make_rom()
 
 
 # -------
