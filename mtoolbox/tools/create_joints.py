@@ -24,4 +24,5 @@ def create_joints(joint_count, base_name, add_affix):
         cmds.joint(name=joint_name, p=(joint * spacing, 0, 0))
     
     # Select root at the end
+    cmds.select(clear=True)
     cmds.select(root_joint)
