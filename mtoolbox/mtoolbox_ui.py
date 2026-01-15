@@ -191,6 +191,9 @@ class MToolboxUI(QtWidgets.QDialog):
         # Stretch for everything
         main_layout.addStretch(1)
 
+        self.create_joints_input_lineedit.setFocusPolicy(QtCore.Qt.ClickFocus)
+        self.setFocus()
+
     # -------
     # Methods
     # -------
