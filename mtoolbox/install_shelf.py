@@ -70,6 +70,11 @@ def onMayaDroppedPythonFile(*args):
             "command": "from mtoolbox.tools.joint_zso import joint_zso; joint_zso()",
             "image": "mtoolbox/joint_zso.png"
         },
+         {
+            "annotation": "Make ROM",
+            "command": "from mtoolbox.tools.make_rom import make_rom; make_rom()",
+            "image": "mtoolbox/make_rom.png"
+        },
 
     ]
 
