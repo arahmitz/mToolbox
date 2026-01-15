@@ -2,16 +2,7 @@ import PySide2, shiboken2, sys, os
 from PySide2 import QtWidgets, QtCore, QtGui
 import maya.OpenMayaUI as omui
 import maya.cmds as cmds
-import mtoolbox.tools.create_joints as create_joints
-import mtoolbox.tools.snap_to_parent as snap_to_parent
-import mtoolbox.tools.snap_to_average as snap_to_average
-import mtoolbox.tools.select_hierarchy as select_hierarchy
-import mtoolbox.tools.delete_history as delete_history
-import mtoolbox.tools.freeze_transforms as freeze_transforms
-import mtoolbox.tools.toggle_lra as toggle_lra
-import mtoolbox.tools.create_locator as create_locator
-import mtoolbox.tools.joint_zso as joint_zso
-import mtoolbox.tools.point_to_average as point_to_average
+from mtoolbox import tools
 
 toolbox_path = os.path.join(cmds.internalVar(userScriptDir=True), 'mtoolbox')
 if toolbox_path not in sys.path:
@@ -70,7 +61,7 @@ class MToolboxUI(QtWidgets.QDialog):
         # Button Row
         self.create_joints_button = QtWidgets.QPushButton("Create Chain")
         self.create_joints_button.clicked.connect(self.on_create_chain)
-        self.create_joints_button.setToolTip(create_joints.create_joints.__doc__)
+        self.create_joints_button.setToolTip(tools.create_joints.__doc__)
 
         # --------------------------------------
         # Snap/Spatial Ops
@@ -78,32 +69,32 @@ class MToolboxUI(QtWidgets.QDialog):
 
         self.stp_button = QtWidgets.QPushButton("Snap To Parent")
         self.stp_button.clicked.connect(self.on_snap_to_parent)
-        self.stp_button.setToolTip(snap_to_parent.snap_to_parent.__doc__)
+        self.stp_button.setToolTip(tools.snap_to_parent.__doc__)
 
         self.sta_button = QtWidgets.QPushButton("Snap To Average")
         self.sta_button.clicked.connect(self.on_snap_to_average)
-        self.sta_button.setToolTip(snap_to_average.snap_to_average.__doc__)
+        self.sta_button.setToolTip(tools.snap_to_average.__doc__)
 
         self.poi_to_avg_buttton = QtWidgets.QPushButton("Point To Average")
         self.poi_to_avg_buttton.clicked.connect(self.on_point_to_average)
-        self.poi_to_avg_buttton.setToolTip(point_to_average.point_to_average.__doc__)
+        self.poi_to_avg_buttton.setToolTip(tools.point_to_average.__doc__)
 
         self.fre_trf_button = QtWidgets.QPushButton("Freeze Transforms")
         self.fre_trf_button.clicked.connect(self.on_freeze_transforms)
-        self.fre_trf_button.setToolTip(freeze_transforms.freeze_transforms.__doc__)
+        self.fre_trf_button.setToolTip(tools.freeze_transforms.__doc__)
 
 
         # -------------------
         # Selection & Cleanup
-        # ------------------
+        # -------------------
         
         self.sel_hie_button = QtWidgets.QPushButton("Select Hierarchy")
         self.sel_hie_button.clicked.connect(self.on_select_hierarchy)
-        self.sel_hie_button.setToolTip(select_hierarchy.select_hierarchy.__doc__)
+        self.sel_hie_button.setToolTip(tools.select_hierarchy.__doc__)
      
         self.del_his_button = QtWidgets.QPushButton("Delete History")
         self.del_his_button.clicked.connect(self.on_delete_history)
-        self.del_his_button.setToolTip(delete_history.delete_history.__doc__)
+        self.del_his_button.setToolTip(tools.delete_history.__doc__)
 
         # ---------------------
         # Joint Operations Grid
@@ -111,11 +102,11 @@ class MToolboxUI(QtWidgets.QDialog):
 
         self.show_lra_button = QtWidgets.QPushButton("Toggle LRA")
         self.show_lra_button.clicked.connect(self.on_toggle_lra)
-        self.show_lra_button.setToolTip(toggle_lra.toggle_lra.__doc__)
+        self.show_lra_button.setToolTip(tools.toggle_lra.__doc__)
 
         self.joint_zso_button = QtWidgets.QPushButton("Joint ZSO")
         self.joint_zso_button.clicked.connect(self.on_joint_zso)
-        self.joint_zso_button.setToolTip(joint_zso.joint_zso.__doc__)
+        self.joint_zso_button.setToolTip(tools.joint_zso.__doc__)
 
         # --------------
         # Create Locator
@@ -123,8 +114,16 @@ class MToolboxUI(QtWidgets.QDialog):
 
         self.crt_loc_button = QtWidgets.QPushButton("Create Locator at Selection")
         self.crt_loc_button.clicked.connect(self.on_create_locator)
-        self.crt_loc_button.setToolTip(create_locator.create_locator.__doc__)
-       
+        self.crt_loc_button.setToolTip(tools.create_locator.__doc__)
+
+        # --------
+        # Make ROM
+        # --------
+
+        self.make_rom_button = QtWidgets.QPushButton("Make ROM Keyframes")
+        self.make_rom_button.clicked.connect(self.on_make_rom)
+        self.make_rom_button.setToolTip(tools.make_rom.__doc__)
+
         # -------------
         # Window Layout
         # -------------
@@ -181,6 +180,13 @@ class MToolboxUI(QtWidgets.QDialog):
         crtloc_layout.addWidget(self.crt_loc_button)
         
         main_layout.addLayout(crtloc_layout)
+
+        # Make ROM
+
+        make_rom_layout = QtWidgets.QVBoxLayout()
+        make_rom_layout.addWidget(self.make_rom_button)
+
+        main_layout.addLayout(make_rom_layout)
         
         # Stretch for everything
         main_layout.addStretch(1)
@@ -188,6 +194,7 @@ class MToolboxUI(QtWidgets.QDialog):
     # -------
     # Methods
     # -------
+    
     # def update_chainlen_slider_value(self, value):
     #    self.create_joints_chainlen_value.setText(str(value))
 
@@ -198,53 +205,58 @@ class MToolboxUI(QtWidgets.QDialog):
         add_affix = self.create_joints_input_checkbox.isChecked()
 
         import importlib
-        import mtoolbox.tools.create_joints as create_joints
+        import tools.create_joints as create_joints
         create_joints.create_joints(joint_count, base_name, add_affix)
     
     def on_snap_to_parent(self):
         import importlib
-        import mtoolbox.tools.snap_to_parent as snap_to_parent
+        import tools.snap_to_parent as snap_to_parent
         snap_to_parent.snap_to_parent()
 
     def on_snap_to_average(self):
         import importlib
-        import mtoolbox.tools.snap_to_average as snap_to_average
+        import tools.snap_to_average as snap_to_average
         snap_to_average.snap_to_average()
 
     def on_select_hierarchy(self):
         import importlib
-        import mtoolbox.tools.select_hierarchy as select_hierarchy
+        import tools.select_hierarchy as select_hierarchy
         select_hierarchy.select_hierarchy()
 
     def on_delete_history(self):
         import importlib
-        import mtoolbox.tools.delete_history as delete_history
+        import tools.delete_history as delete_history
         delete_history.delete_history()
 
     def on_freeze_transforms(self):
         import importlib
-        import mtoolbox.tools.freeze_transforms as freeze_transforms
+        import tools.freeze_transforms as freeze_transforms
         freeze_transforms.freeze_transforms()
     
     def on_toggle_lra(self):
         import importlib
-        import mtoolbox.tools.toggle_lra as toggle_lra
+        import tools.toggle_lra as toggle_lra
         toggle_lra.toggle_lra()
     
     def on_create_locator(self):
         import importlib
-        import mtoolbox.tools.create_locator as create_locator
+        import tools.create_locator as create_locator
         create_locator.create_locator()
     
     def on_joint_zso(self):
         import importlib
-        import mtoolbox.tools.joint_zso as joint_zso
+        import tools.joint_zso as joint_zso
         joint_zso.joint_zso()
 
     def on_point_to_average(self):
         import importlib
-        import mtoolbox.tools.point_to_average as point_to_average
+        import tools.point_to_average as point_to_average
         point_to_average.point_to_average()
+
+    def on_make_rom(self):
+        import importlib
+        import tools.make_rom as make_rom
+        make_rom.make_rom()
 
 
 # -------
