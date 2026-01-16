@@ -10,6 +10,9 @@ def make_rom():
     - Aligns keys to interval
     - Preserves existing keys on the start frame
     """
+    selection = get_selection("Make ROM")
+    if not selection:
+        return
 
     interval = 10
     start_time = int(cmds.playbackOptions(q=True, min=True)) # grabs the start of the selected timeline
@@ -23,7 +26,6 @@ def make_rom():
         cmds.currentTime(start_time)
         cmds.setKeyframe(selection)
     
-    selection = get_selection("Make ROM")
     if selection:
         # has to end at end time + interval to include endtime
         for keyframe in range(first_key, end_time + interval, interval):
