@@ -7,10 +7,10 @@ def onMayaDroppedPythonFile(*args):
     installer_dir = os.path.dirname(__file__)
     prefs_dir = cmds.internalVar(userPrefDir=True)
     icons_source_dir = os.path.join(installer_dir, "icons")
-    icons_target_dir = os.path.join(prefs_dir, "icons", "mtoolbox")
+    icons_target_dir = os.path.join(prefs_dir, "icons", "madtools")
     os.makedirs(icons_target_dir, exist_ok=True)
 
-    # Copy files from scripts/mtoolbox/icons to prefs/icons/mtoolbox
+    # Copy files from scripts/madtools/icons to prefs/icons/madtools
     if os.path.exists(icons_source_dir):
         for file_name in os.listdir(icons_source_dir):
             source_file = os.path.join(icons_source_dir, file_name)
@@ -22,58 +22,58 @@ def onMayaDroppedPythonFile(*args):
     buttons_to_add = [
         {
             "annotation": "Create Joints",
-            "command": "from mtoolbox.tools.create_joints import create_joints; create_joints(3, 'joint', True)",
-            "image": "mtoolbox/create_joints.png"
+            "command": "from madtools.tools.create_joints import create_joints; create_joints(3, 'joint', True)",
+            "image": "madtools/create_joints.png"
         },
         {
             "annotation": "Create Locator",
-            "command": "from mtoolbox.tools.create_locator import create_locator; create_locator()",
-            "image": "mtoolbox/create_locator.png"
+            "command": "from madtools.tools.create_locator import create_locator; create_locator()",
+            "image": "madtools/create_locator.png"
         },
         {
             "annotation": "Snap To Average",
-            "command": "from mtoolbox.tools.snap_to_average import snap_to_average; snap_to_average()",
-            "image": "mtoolbox/snap_to_average.png"
+            "command": "from madtools.tools.snap_to_average import snap_to_average; snap_to_average()",
+            "image": "madtools/snap_to_average.png"
         },
         {
             "annotation": "Point To Average",
-            "command": "from mtoolbox.tools.point_to_average import point_to_average; point_to_average()",
-            "image": "mtoolbox/point_to_average.png"
+            "command": "from madtools.tools.point_to_average import point_to_average; point_to_average()",
+            "image": "madtools/point_to_average.png"
         },
         {
             "annotation": "Snap To Parent",
-            "command": "from mtoolbox.tools.snap_to_parent import snap_to_parent; snap_to_parent()",
-            "image": "mtoolbox/snap_to_parent.png"
+            "command": "from madtools.tools.snap_to_parent import snap_to_parent; snap_to_parent()",
+            "image": "madtools/snap_to_parent.png"
         },
         {
             "annotation": "Freeze Transforms",
-            "command": "from mtoolbox.tools.freeze_transforms import freeze_transforms; freeze_transforms()",
-            "image": "mtoolbox/freeze_transforms.png"
+            "command": "from madtools.tools.freeze_transforms import freeze_transforms; freeze_transforms()",
+            "image": "madtools/freeze_transforms.png"
         },
         {
             "annotation": "Select Hierarchy",
-            "command": "from mtoolbox.tools.select_hierarchy import select_hierarchy; select_hierarchy()",
-            "image": "mtoolbox/select_hierarchy.png"
+            "command": "from madtools.tools.select_hierarchy import select_hierarchy; select_hierarchy()",
+            "image": "madtools/select_hierarchy.png"
         },
            {
             "annotation": "Delete History",
-            "command": "from mtoolbox.tools.delete_history import delete_history; delete_history()",
-            "image": "mtoolbox/delete_history.png"
+            "command": "from madtools.tools.delete_history import delete_history; delete_history()",
+            "image": "madtools/delete_history.png"
         }, 
         {
             "annotation": "Toggle LRA",
-            "command": "from mtoolbox.tools.toggle_lra import toggle_lra; toggle_lra()",
-            "image": "mtoolbox/toggle_lra.png"
+            "command": "from madtools.tools.toggle_lra import toggle_lra; toggle_lra()",
+            "image": "madtools/toggle_lra.png"
         },
         {
             "annotation": "Joint ZSO",
-            "command": "from mtoolbox.tools.joint_zso import joint_zso; joint_zso()",
-            "image": "mtoolbox/joint_zso.png"
+            "command": "from madtools.tools.joint_zso import joint_zso; joint_zso()",
+            "image": "madtools/joint_zso.png"
         },
          {
             "annotation": "Make ROM",
-            "command": "from mtoolbox.tools.make_rom import make_rom; make_rom()",
-            "image": "mtoolbox/make_rom.png"
+            "command": "from madtools.tools.make_rom import make_rom; make_rom()",
+            "image": "madtools/make_rom.png"
         },
 
     ]
@@ -97,7 +97,7 @@ def onMayaDroppedPythonFile(*args):
 
 
     # Script body
-    shelf_name = 'mToolbox'
+    shelf_name = 'madTools'
 
 
     # Create a new shelf if it doesn't exist

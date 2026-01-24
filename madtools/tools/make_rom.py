@@ -1,6 +1,6 @@
 import maya.cmds as cmds
 import math
-from mtoolbox.utils.selection import get_selection
+from madtools.utils.selection import get_selection
 
 def make_rom():
     """

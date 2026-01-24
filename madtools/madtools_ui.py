@@ -2,9 +2,9 @@ import PySide2, shiboken2, sys, os
 from PySide2 import QtWidgets, QtCore, QtGui
 import maya.OpenMayaUI as omui
 import maya.cmds as cmds
-from mtoolbox import tools
+from madtools import tools
 
-toolbox_path = os.path.join(cmds.internalVar(userScriptDir=True), 'mtoolbox')
+toolbox_path = os.path.join(cmds.internalVar(userScriptDir=True), 'madtools')
 if toolbox_path not in sys.path:
     sys.path.append(toolbox_path)
 
@@ -18,13 +18,13 @@ def get_maya_main_window():
     return maya_parent
 
 
-class MToolboxUI(QtWidgets.QDialog):
+class madtoolsUI(QtWidgets.QDialog):
     """
     Main window definition
     """
     def __init__(self, parent=None):
-        super(MToolboxUI, self).__init__(parent)
-        self.setWindowTitle("mToolbox v.1.0")
+        super(madtoolsUI, self).__init__(parent)
+        self.setWindowTitle("madTools v.1.0.0")
         
         # -------------
         # Window Layout
@@ -45,17 +45,15 @@ class MToolboxUI(QtWidgets.QDialog):
         self.create_joints_chainlen_slider.setMaximum(10)
         self.create_joints_chainlen_slider.setValue(5)
         self.create_joints_chainlen_slider.setTickInterval(1)
-        self.create_joints_chainlen_slider.setTickPosition(QtWidgets.QSlider.TicksBelow)
-    
-        # self.create_joints_chainlen_value = QtWidgets.QLabel(str(self.create_joints_chainlen_slider.value()))
-        # create_joints_chainlen_layout.addWidget(self.create_joints_chainlen_value)
 
-        # self.create_joints_chainlen_slider.valueChanged.connect(self.update_chainlen_slider_value)
-        
+        self.create_joints_chainlen_value = QtWidgets.QLabel(
+            str(self.create_joints_chainlen_slider.value()))
+
+        self.create_joints_chainlen_slider.valueChanged.connect(self.update_chainlen_slider_value)        
         # Name Row
         create_joints_input_label = QtWidgets.QLabel("Input name:")
         self.create_joints_input_lineedit = QtWidgets.QLineEdit()
-        create_joints_input_checklabel = QtWidgets.QLabel("Has end label")
+        create_joints_input_checklabel = QtWidgets.QLabel("End label:")
         self.create_joints_input_checkbox = QtWidgets.QCheckBox()
 
         # Button Row
@@ -134,6 +132,7 @@ class MToolboxUI(QtWidgets.QDialog):
         ## Chain length
         cj_chainlen_layout = QtWidgets.QHBoxLayout()
         cj_chainlen_layout.addWidget(create_joints_chainlen_label)
+        cj_chainlen_layout.addWidget(self.create_joints_chainlen_value)
         cj_chainlen_layout.addWidget(self.create_joints_chainlen_slider)
         create_joints_layout.addLayout(cj_chainlen_layout)
 
@@ -198,8 +197,8 @@ class MToolboxUI(QtWidgets.QDialog):
     # Methods
     # -------
     
-    # def update_chainlen_slider_value(self, value):
-    #    self.create_joints_chainlen_value.setText(str(value))
+    def update_chainlen_slider_value(self, value):
+        self.create_joints_chainlen_value.setText(str(value))
 
     def on_create_chain(self):
         # Gets values from widgets
@@ -271,8 +270,10 @@ def show_ui():
     try:
         win.close()
         win.deleteLater()
-    except NameError:
+    except (NameError, RuntimeError):
         pass
 
-    win = MToolboxUI(parent=maya_parent)
+    win = madtoolsUI(parent=maya_parent)
     win.show()
+
+show_ui()

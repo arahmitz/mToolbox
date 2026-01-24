@@ -7,10 +7,10 @@ def onMayaDroppedPythonFile(*args):
     installer_dir = os.path.dirname(__file__)
     prefs_dir = cmds.internalVar(userPrefDir=True)
     icons_source_dir = os.path.join(installer_dir, "icons")
-    icons_target_dir = os.path.join(prefs_dir, "icons", "mtoolbox")
+    icons_target_dir = os.path.join(prefs_dir, "icons", "madtools")
     os.makedirs(icons_target_dir, exist_ok=True)
 
-    # Copy files from scripts/mtoolbox/icons to prefs/icons/mtoolbox
+    # Copy files from scripts/madtools/icons to prefs/icons/madtools
     if os.path.exists(icons_source_dir):
         for file_name in os.listdir(icons_source_dir):
             source_file = os.path.join(icons_source_dir, file_name)
@@ -21,7 +21,7 @@ def onMayaDroppedPythonFile(*args):
 
     # Current shelf
     current_shelf = cmds.shelfTabLayout('ShelfLayout', q=True, st=True)
-    button_name = "mToolbox"
+    button_name = "madtools"
 
 
     # Remove old button if exists on this shelf
@@ -32,8 +32,8 @@ def onMayaDroppedPythonFile(*args):
     cmds.shelfButton(
         button_name,
         parent=current_shelf,
-        label="mToolbox",
-        image="mtoolbox/mtoolbox.png",
-        command="import mtoolbox.mtoolbox_ui as toolbox; toolbox.show_ui()",
+        label="madtTools",
+        image="madtools/madtools.png",
+        command="import madtools.madtools_ui as madtools; madtools.show_ui()",
         sourceType="python"
     )
