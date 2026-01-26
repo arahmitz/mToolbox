@@ -41,11 +41,10 @@ madTools has two modes:
   - Creates keyframes every 10 frames from current startTime to current endTime to help with creation of RangeOfMotion animation
 
 ## Installation: 
-1. Go to [Release](https://github.com/arahmitz/madTools/releases) page
-2. Download the latest release `.zip` file
-3. Extract the `madtools` folder into your `maya/####/scripts/` folder
-4. Drag and drop `install_ui.py` (for UI version) or `install_shelf.py` (for shelf version)
-5. If UI selected - a new button will appear on your shelf, 
+1. Download the latest release [here](https://github.com/arahmitz/madTools/releases/latest)
+2. Extract the `madtools` folder into your `maya/####/scripts/` folder
+3. Drag and drop `install_ui.py` (for UI version) or `install_shelf.py` (for shelf version)
+4. If UI selected - a new button will appear on your shelf, 
 if shelf selected - a new shelf called `madTools` with buttons will appear on current shelf
 
 ## Notes: 
